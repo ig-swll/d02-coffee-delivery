@@ -8,6 +8,7 @@ export const NavbarContainer = styled.div`
 `
 
 export const Actions = styled.div`
+  display: flex;
   gap: 0.72rem;
 `
 

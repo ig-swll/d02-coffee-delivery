@@ -14,7 +14,7 @@ export function Navbar() {
     <NavbarContainer>
       <img src={coffeeDeliveryLogo} alt="Logo do Coffee Delivery" />
 
-      <Actions style={{ display: 'flex' }}>
+      <Actions>
         <Location>
           <MapPin weight="fill" size={22} />
           Brasília, DF

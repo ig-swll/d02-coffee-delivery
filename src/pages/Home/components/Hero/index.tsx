@@ -1,3 +1,4 @@
+import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import imageCoffee from '../../../../assets/img-hero.png'
 import {
   HeroContainer,
@@ -19,10 +20,30 @@ export function Hero() {
         </MainText>
 
         <SellingPointsGrid>
-          <SellingPoint>Compra simples e segura</SellingPoint>
-          <SellingPoint>Embalagem mantém o café intacto</SellingPoint>
-          <SellingPoint>Entrega rápida e rastreada</SellingPoint>
-          <SellingPoint>O café chega fresquinho até você</SellingPoint>
+          <SellingPoint>
+            <span>
+              <ShoppingCart weight="fill" size={16} />
+            </span>
+            Compra simples e segura
+          </SellingPoint>
+          <SellingPoint>
+            <span>
+              <Package weight="fill" size={16} />
+            </span>
+            Embalagem mantém o café intacto
+          </SellingPoint>
+          <SellingPoint>
+            <span>
+              <Timer weight="fill" size={16} />
+            </span>
+            Entrega rápida e rastreada
+          </SellingPoint>
+          <SellingPoint>
+            <span>
+              <Coffee weight="fill" size={16} />
+            </span>
+            O café chega fresquinho até você
+          </SellingPoint>
         </SellingPointsGrid>
       </div>
       <img
