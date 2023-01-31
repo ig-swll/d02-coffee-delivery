@@ -9,10 +9,11 @@ export const CoffeeListContainer = styled.section`
 `
 
 export const CoffeeCardGrid = styled.div`
+  width: 100%;
   display: grid;
   gap: 2.5rem 2rem;
-  grid-template-columns: repeat(4, minmax(min(256px, 100%), 1fr));
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   align-items: center;
+  justify-content: center;
   margin: 0 auto;
 `

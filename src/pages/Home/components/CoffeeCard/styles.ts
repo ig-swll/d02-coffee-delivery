@@ -6,8 +6,9 @@ export const Card = styled.div`
   background-color: ${({ theme }) => theme['base-card']};
   align-items: center;
   justify-content: space-between;
-  width: 256px;
-  height: 310px;
+  width: 16rem;
+  height: 19.375rem;
+  margin: 0 auto;
 
   /* width: 100%; */
 
