@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
 import { useState } from 'react'
+import { formatCurrency } from '../../../../utils/formatCurrency'
 import {
   AddToCartButton,
   Card,
@@ -20,11 +21,9 @@ export interface CoffeeCardProps {
   price: number
 }
 
-const PAGE_URL = window.location.href
-
 export function CoffeeCard(props: CoffeeCardProps) {
   const [amount, setAmount] = useState(1)
-  console.log(PAGE_URL)
+
   function increaseAmount() {
     setAmount((state) => state + 1)
   }
@@ -53,7 +52,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
       <CardBottom>
         <Price>
           <small>R$&nbsp;</small>
-          <strong>{price}</strong>
+          <strong>{formatCurrency(price, 'short')}</strong>
         </Price>
         <div>
           <Counter>
