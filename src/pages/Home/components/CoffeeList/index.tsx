@@ -1,5 +1,6 @@
 import { CoffeeCard } from '../CoffeeCard'
 import { CoffeeCardGrid, CoffeeListContainer } from './styles'
+import { coffeeList } from '../../../../assets/coffeeData'
 
 export function CoffeeList() {
   return (
@@ -7,12 +8,9 @@ export function CoffeeList() {
       <h3>Nossos cafés</h3>
 
       <CoffeeCardGrid>
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
-        <CoffeeCard />
+        {coffeeList.map((coffee) => (
+          <CoffeeCard key={coffee.id} {...coffee} />
+        ))}
       </CoffeeCardGrid>
     </CoffeeListContainer>
   )

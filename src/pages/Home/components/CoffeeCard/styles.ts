@@ -39,6 +39,7 @@ export const Tag = styled.span`
   font-weight: 700;
   font-size: 0.625rem;
   line-height: 130%;
+  text-transform: uppercase;
 `
 
 export const Info = styled.div`

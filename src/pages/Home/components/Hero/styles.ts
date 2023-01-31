@@ -11,9 +11,9 @@ export const HeroContainer = styled.section`
   gap: 3rem;
 
   > img {
+    width: 100%;
     max-width: 476px;
-    flex-shrink: 1;
-    flex-grow: 0;
+    height: auto;
   }
 
   &::before {

@@ -11,9 +11,18 @@ import {
   Tags,
 } from './styles'
 
+export interface CoffeeCardProps {
+  id: number
+  tags: string[]
+  name: string
+  description: string
+  image: string
+  price: number
+}
+
 const PAGE_URL = window.location.href
 
-export function CoffeeCard() {
+export function CoffeeCard(props: CoffeeCardProps) {
   const [amount, setAmount] = useState(1)
   console.log(PAGE_URL)
   function increaseAmount() {
@@ -26,23 +35,25 @@ export function CoffeeCard() {
     }
   }
 
+  const { tags, name, description, image, price } = props
+
   return (
     <Card>
-      <img src="/images/Expresso.png" alt="" />
+      <img src={image} alt={`Foto de ${name}`} />
       <Tags>
-        <Tag>TRADICIONAL</Tag>
-        <Tag>TRADICIONAL</Tag>
-        <Tag>TRADICIONAL</Tag>
+        {tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
       </Tags>
       <Info>
-        <strong>Expresso Tradicional</strong>
-        <small>O tradicional café feito com água quente e grãos moídos</small>
+        <strong>{name}</strong>
+        <small>{description}</small>
       </Info>
 
       <CardBottom>
         <Price>
           <small>R$&nbsp;</small>
-          <strong>9,90</strong>
+          <strong>{price}</strong>
         </Price>
         <div>
           <Counter>

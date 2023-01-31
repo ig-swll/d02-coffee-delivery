@@ -6,6 +6,8 @@ export const CoffeeListContainer = styled.section`
     color: ${({ theme }) => theme['base-subtitle']};
     margin-bottom: 3.375rem;
   }
+
+  margin-bottom: 10rem;
 `
 
 export const CoffeeCardGrid = styled.div`
