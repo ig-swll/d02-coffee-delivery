@@ -1,11 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import imageCoffee from '../../../../assets/img-hero.png'
-import {
-  HeroContainer,
-  MainText,
-  SellingPoint,
-  SellingPointsGrid,
-} from './styles'
+import { ItemWithIcon } from '../../../../components/ItemWithIcon'
+import { HeroContainer, MainText, SellingPoints } from './styles'
 
 export function Hero() {
   return (
@@ -19,32 +15,27 @@ export function Hero() {
           </p>
         </MainText>
 
-        <SellingPointsGrid>
-          <SellingPoint>
-            <span>
-              <ShoppingCart weight="fill" size={16} />
-            </span>
-            Compra simples e segura
-          </SellingPoint>
-          <SellingPoint>
-            <span>
-              <Package weight="fill" size={16} />
-            </span>
-            Embalagem mantém o café intacto
-          </SellingPoint>
-          <SellingPoint>
-            <span>
-              <Timer weight="fill" size={16} />
-            </span>
-            Entrega rápida e rastreada
-          </SellingPoint>
-          <SellingPoint>
-            <span>
-              <Coffee weight="fill" size={16} />
-            </span>
-            O café chega fresquinho até você
-          </SellingPoint>
-        </SellingPointsGrid>
+        <SellingPoints>
+          <ItemWithIcon
+            iconComponent={<ShoppingCart weight="fill" size={16} />}
+            text="Compra simples e segura"
+            iconBgColor="yellow-dark"
+          />
+          <ItemWithIcon
+            iconComponent={<Package weight="fill" size={16} />}
+            text="Embalagem mantém o café intacto"
+          />
+          <ItemWithIcon
+            iconComponent={<Timer weight="fill" size={16} />}
+            text="Entrega rápida e rastreada"
+            iconBgColor="yellow"
+          />
+          <ItemWithIcon
+            iconComponent={<Coffee weight="fill" size={16} />}
+            text="O café chega fresquinho até você"
+            iconBgColor="purple"
+          />
+        </SellingPoints>
       </div>
       <img
         src={imageCoffee}

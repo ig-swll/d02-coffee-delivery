@@ -8,7 +8,7 @@ export const HeroContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3.5rem;
+  gap: 3rem;
 
   > img {
     max-width: 476px;
@@ -32,13 +32,18 @@ export const HeroContainer = styled.section`
       ),
       url(${heroBackground});
     background-position: center;
-    background-repeat: repeat-x;
+    background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  @media screen and (max-width: 780px) {
+    flex-direction: column;
   }
 `
 
 export const MainText = styled.div`
   flex-grow: 1;
+
   h1 {
     font-size: 3rem;
     font-weight: 800;
@@ -51,25 +56,14 @@ export const MainText = styled.div`
   }
 `
 
-export const SellingPointsGrid = styled.div`
+export const SellingPoints = styled.div`
   margin-top: 4.125rem;
   display: grid;
-  grid-template-columns: repeat(2, minmax(min(1fr, 100%), 1.5fr));
-  width: 100%;
-  gap: 1.25rem 2.5rem;
-`
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 2.5rem;
 
-export const SellingPoint = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  span {
-    display: flex;
-    place-content: center;
-    padding: 0.5rem;
-    color: ${({ theme }) => theme.white};
-    border-radius: 50%;
-    background-color: purple;
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+    margin: 4.125rem auto 0;
   }
 `
