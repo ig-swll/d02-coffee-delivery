@@ -14,10 +14,9 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 100%;
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme['base-text']};
-
   }
 
-  body, input, textarea, button {
+  body, input, textarea, button, select, option {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -44,11 +43,4 @@ export const GlobalStyle = createGlobalStyle`
       background-color: ${({ theme }) => theme['base-hover']};
     }
   }
-
-  input {
-    background-color: ${({ theme }) => theme['base-input']};
-    border: 1px solid ${({ theme }) => theme['base-button']};
-    border-radius: 4px;
-    padding: 0.75rem;
-  }
-  `
+`
