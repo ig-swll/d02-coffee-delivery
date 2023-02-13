@@ -4,7 +4,7 @@ import { IconBgColor, IconContainer, ItemContainer } from './styles'
 interface ItemWithIconProps {
   iconComponent: ReactNode
   iconBgColor?: IconBgColor
-  text: string | ReactNode
+  children: ReactNode
 }
 
 export function ItemWithIcon(props: ItemWithIconProps) {
@@ -13,7 +13,7 @@ export function ItemWithIcon(props: ItemWithIconProps) {
       <IconContainer bgColor={props.iconBgColor ?? 'base-text'}>
         {props.iconComponent}
       </IconContainer>
-      {props.text}
+      {props.children}
     </ItemContainer>
   )
 }

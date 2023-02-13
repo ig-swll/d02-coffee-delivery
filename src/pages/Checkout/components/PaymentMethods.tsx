@@ -1,9 +1,9 @@
 import { Bank, CreditCard, Money } from 'phosphor-react'
-import { PaymentMethods } from '../styles'
+import { PaymentMethodsContainer } from '../styles'
 
-export function PaymentMethod() {
+export function PaymentMethods() {
   return (
-    <PaymentMethods>
+    <PaymentMethodsContainer>
       <div>
         <input
           id="credit"
@@ -33,6 +33,6 @@ export function PaymentMethod() {
           Dinheiro
         </label>
       </div>
-    </PaymentMethods>
+    </PaymentMethodsContainer>
   )
 }

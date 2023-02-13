@@ -6,6 +6,7 @@ import { GlobalStyle } from './styles/global'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainLayout } from './layouts/MainLayout'
 import { Checkout } from './pages/Checkout'
+import { Success } from './pages/Success'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: 'checkout',
+        path: '/checkout/success',
+        element: <Success />,
+      },
+      {
+        path: '/checkout',
         element: <Checkout />,
       },
       {

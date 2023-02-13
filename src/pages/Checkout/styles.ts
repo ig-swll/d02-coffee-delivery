@@ -8,15 +8,21 @@ export const CheckoutContainer = styled.main`
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+
+  & > div {
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
 `
 
-export const CheckoutForm = styled.form`
+export const AddressForm = styled.form`
   h2 {
     margin-bottom: 1rem;
   }
 `
 
-export const FormSection = styled.section`
+export const CheckoutSection = styled.section`
   padding: 2.5rem;
   background-color: ${({ theme }) => theme['base-card']};
   border-radius: 6px;
@@ -131,7 +137,7 @@ export const Select = styled.select`
   }
 `
 
-export const PaymentMethods = styled.fieldset`
+export const PaymentMethodsContainer = styled.fieldset`
   display: flex;
   gap: 0.75rem;
   border: none;
@@ -170,5 +176,58 @@ export const PaymentMethods = styled.fieldset`
         border-color: ${({ theme }) => theme.purple};
       }
     }
+  }
+`
+
+export const SummaryContainer = styled(CheckoutSection)`
+  border-top-right-radius: 44px;
+  border-bottom-left-radius: 44px;
+`
+
+export const Separator = styled.span`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme['base-button']};
+  margin: 1.5rem 0;
+`
+
+export const SummaryInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+
+export const SummaryItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  span {
+    font-size: 0.875rem;
+  }
+  span + span {
+    font-size: 1rem;
+  }
+  strong {
+    font-size: 1.25rem;
+  }
+`
+
+export const SubmitOrderButton = styled.button`
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  padding: 0.75rem;
+  background-color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.white};
+  text-transform: uppercase;
+  font-weight: 700;
+
+  &:disabled {
+    background-color: ${({ theme }) => theme['base-button']};
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme['yellow-dark']};
   }
 `

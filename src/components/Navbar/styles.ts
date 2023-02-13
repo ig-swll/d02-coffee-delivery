@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NavbarContainer = styled.div`
@@ -27,13 +28,15 @@ export const Location = styled.div`
   }
 `
 
-export const CartButton = styled.button`
+export const CartButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1 / 1;
   padding: 0.5rem;
   position: relative;
+  text-decoration: none;
+  border-radius: 6px;
 
   color: ${({ theme }) => theme['yellow-dark']};
   background-color: ${({ theme }) => theme['yellow-light']};

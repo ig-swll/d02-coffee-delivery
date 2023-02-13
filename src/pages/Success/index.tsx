@@ -1,0 +1,55 @@
+import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import successIllustration from '../../assets/Illustration.svg'
+import { ItemWithIcon } from '../../components/ItemWithIcon'
+import { OrderInfo, SuccessContainer, Title } from './styles'
+
+export function Success() {
+  return (
+    <SuccessContainer>
+      <Title>
+        <h1>Uhu! Pedido confirmado</h1>
+        <p>Agora é só aguardar que logo o café chegará até você</p>
+      </Title>
+
+      <div>
+        <OrderInfo>
+          <ItemWithIcon
+            iconBgColor="purple"
+            iconComponent={<MapPin size={16} weight="fill" />}
+          >
+            <div>
+              <p>
+                Entrega em <strong>Rua sei la das quantas, 102</strong>
+              </p>
+              <p>Águas Claras - Brasília, DF</p>
+            </div>
+          </ItemWithIcon>
+
+          <ItemWithIcon
+            iconBgColor="yellow"
+            iconComponent={<Timer size={16} weight="fill" />}
+          >
+            <div>
+              <p>Previsão de entrega</p>
+              <strong>20 min - 30 min</strong>
+            </div>
+          </ItemWithIcon>
+
+          <ItemWithIcon
+            iconBgColor="yellow-dark"
+            iconComponent={<CurrencyDollar size={16} />}
+          >
+            <div>
+              <p>Pagamento na entrega</p>
+              <strong>Cartão de crédito</strong>
+            </div>
+          </ItemWithIcon>
+        </OrderInfo>
+        <img
+          src={successIllustration}
+          alt="Ilustração de um homem em uma moto com um pacote"
+        />
+      </div>
+    </SuccessContainer>
+  )
+}
