@@ -11,7 +11,7 @@ export function Success() {
         <p>Agora é só aguardar que logo o café chegará até você</p>
       </Title>
 
-      <div>
+      <section>
         <OrderInfo>
           <ItemWithIcon
             iconBgColor="purple"
@@ -45,11 +45,12 @@ export function Success() {
             </div>
           </ItemWithIcon>
         </OrderInfo>
+
         <img
           src={successIllustration}
           alt="Ilustração de um homem em uma moto com um pacote"
         />
-      </div>
+      </section>
     </SuccessContainer>
   )
 }

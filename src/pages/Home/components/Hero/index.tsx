@@ -18,23 +18,25 @@ export function Hero() {
         <SellingPoints>
           <ItemWithIcon
             iconComponent={<ShoppingCart weight="fill" size={16} />}
-            text="Compra simples e segura"
             iconBgColor="yellow-dark"
-          />
-          <ItemWithIcon
-            iconComponent={<Package weight="fill" size={16} />}
-            text="Embalagem mantém o café intacto"
-          />
+          >
+            Compra simples e segura
+          </ItemWithIcon>
+          <ItemWithIcon iconComponent={<Package weight="fill" size={16} />}>
+            Embalagem mantém o café intacto
+          </ItemWithIcon>
           <ItemWithIcon
             iconComponent={<Timer weight="fill" size={16} />}
-            text="Entrega rápida e rastreada"
             iconBgColor="yellow"
-          />
+          >
+            Entrega rápida e rastreada
+          </ItemWithIcon>
           <ItemWithIcon
             iconComponent={<Coffee weight="fill" size={16} />}
-            text="O café chega fresquinho até você"
             iconBgColor="purple"
-          />
+          >
+            O café chega fresquinho até você
+          </ItemWithIcon>
         </SellingPoints>
       </div>
       <img

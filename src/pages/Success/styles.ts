@@ -1,7 +1,53 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const bikeAnim = keyframes`
+ from {
+  opacity: 0;
+  translate: -5rem;
+ }
+
+ to {
+  opacity: 1;
+  translate: 0;
+ }
+`
+
+const orderInfoAnim = keyframes`
+  from {
+    opacity: 0;
+    translate: 0 -3rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+`
 
 export const SuccessContainer = styled.main`
   margin-top: 5rem;
+
+  section + section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+
+    img {
+      animation: ${bikeAnim} 0.4s ease-in;
+      max-width: 100%;
+
+      @media (prefers-reduced-motion) {
+        animation: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-top: 2.5rem;
+    section + section {
+      flex-direction: column;
+    }
+  }
 `
 
 export const Title = styled.section`
@@ -27,8 +73,23 @@ export const OrderInfo = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 2.5rem;
-  border-radius: 6px 44px 6px 44px;
-  border: 1px solid;
-  border-image-source: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%)
-    1 100%;
+  position: relative;
+  width: 100%;
+  animation: ${orderInfoAnim} 0.4s ease-out;
+
+  &::before {
+    pointer-events: none;
+    content: '';
+    padding: 1px;
+    position: absolute;
+    inset: 0;
+    border-radius: 6px 44px 6px 44px;
+    background: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 `

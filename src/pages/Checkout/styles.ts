@@ -5,7 +5,7 @@ export const CheckoutContainer = styled.main`
   display: grid;
   gap: 2rem;
   grid-template-columns: 1.5fr 1fr;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
 
@@ -174,6 +174,15 @@ export const PaymentMethodsContainer = styled.fieldset`
       &:checked + label {
         background-color: ${({ theme }) => theme['purple-light']};
         border-color: ${({ theme }) => theme.purple};
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    div {
+      label {
+        justify-content: center;
       }
     }
   }

@@ -6,6 +6,8 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
+  gap: 0.72rem;
+  /* background: #000; */
 `
 
 export const Actions = styled.div`
