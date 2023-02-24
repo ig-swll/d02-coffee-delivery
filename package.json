@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "immer": "^9.0.19",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,6 +28,12 @@
     "vite": "^4.0.4"
   },
   "eslintConfig": {
-    "extends": "@rocketseat/eslint-config/react"
+    "extends": "@rocketseat/eslint-config/react",
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ]
+    }
   }
 }

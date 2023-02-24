@@ -1,7 +1,9 @@
 import { MapPin, ShoppingCartSimple } from 'phosphor-react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import coffeeDeliveryLogo from '../../assets/Logo.svg'
+import { CartContext } from '../../contexts/CartContext'
 import {
   Actions,
   CartButton,
@@ -11,6 +13,8 @@ import {
 } from './styles'
 
 export function Navbar() {
+  const { items } = useContext(CartContext)
+
   return (
     <NavbarContainer>
       <Link to="/">
@@ -24,7 +28,7 @@ export function Navbar() {
         </Location>
         <CartButton to="/checkout">
           <ShoppingCartSimple size={22} weight="fill" />
-          <CartBadge>3</CartBadge>
+          {items.length > 0 && <CartBadge>{items.length}</CartBadge>}
         </CartButton>
       </Actions>
     </NavbarContainer>

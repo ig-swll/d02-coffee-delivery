@@ -123,6 +123,8 @@ export const AddToCartButton = styled.button`
   background-color: ${({ theme }) => theme['purple-dark']};
   aspect-ratio: 1/1;
   padding: 0.5rem;
+  display: flex;
+  place-content: center;
 
   &:hover {
     background-color: ${({ theme }) => theme.purple};

@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainLayout } from './layouts/MainLayout'
 import { Checkout } from './pages/Checkout'
 import { Success } from './pages/Success'
+import { CartContextProvider } from './contexts/CartContext'
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,9 @@ const router = createBrowserRouter([
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <RouterProvider router={router} />
+      <CartContextProvider>
+        <RouterProvider router={router} />
+      </CartContextProvider>
 
       <GlobalStyle />
     </ThemeProvider>
