@@ -53,6 +53,8 @@ export const CartBadge = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 1.25rem;
+  width: 1.25rem;
 
   top: -0.5rem;
   left: 1.625rem;

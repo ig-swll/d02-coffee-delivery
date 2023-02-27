@@ -1,31 +1,70 @@
-import { FormGroup, Input, Select } from '../styles'
+import { useFormContext } from 'react-hook-form'
+
+import { Select } from './Select'
+import { Input } from './Input'
+import { UFs } from '../../../assets/ufs'
+import { CheckoutFormData } from '../../../forms/useCheckoutForm'
+import { FormGroup } from '../styles'
 
 export function AddressForm() {
+  const { register, formState } = useFormContext<CheckoutFormData>()
+  const { dirtyFields, errors } = formState
+
   return (
     <FormGroup>
       <Input
         id="cep"
-        name="cep"
         placeholder="CEP"
-        type="text"
         pattern="[0-9]*"
+        maxLength={8}
+        error={errors.zipcode?.message}
+        {...register('zipcode')}
       />
-      <Input id="rua" name="rua" placeholder="Rua" type="text" />
-      <Input name="numero" placeholder="Número" type="text" />
+      <Input
+        id="rua"
+        placeholder="Rua"
+        type="text"
+        error={errors.street?.message}
+        {...register('street')}
+      />
+      <Input
+        placeholder="Número"
+        type="number"
+        error={errors.number?.message}
+        {...register('number', { valueAsNumber: true })}
+      />
       <Input
         id="complemento"
-        name="complemento"
         placeholder="Complemento"
-        type="text"
+        helperText="Opcional"
+        isDirty={dirtyFields.complement}
+        error={errors.complement?.message}
+        {...register('complement')}
       />
-      <Input name="bairro" placeholder="Bairro" type="text" />
-      <Input name="cidade" placeholder="Cidade" type="text" />
-      <Select name="uf" placeholder="UF" required>
-        <option value="" disabled selected hidden>
+      <Input
+        placeholder="Bairro"
+        error={errors.neighborhood?.message}
+        {...register('neighborhood')}
+      />
+      <Input
+        placeholder="Cidade"
+        error={errors.city?.message}
+        {...register('city')}
+      />
+      <Select
+        placeholder="UF"
+        id="uf"
+        error={errors.state?.message}
+        {...register('state')}
+      >
+        <option value="" disabled hidden>
           UF
         </option>
-        <option value="DF">DF</option>
-        <option value="GO">GO</option>
+        {UFs.map((uf) => (
+          <option key={uf.nome} value={uf.sigla}>
+            {uf.sigla}
+          </option>
+        ))}
       </Select>
     </FormGroup>
   )

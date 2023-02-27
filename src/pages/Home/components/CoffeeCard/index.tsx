@@ -1,5 +1,8 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import toast from 'react-hot-toast'
+
+import { CartContext } from '../../../../contexts/CartContext'
 import { formatCurrency } from '../../../../utils/formatCurrency'
 import {
   AddToCartButton,
@@ -22,7 +25,11 @@ export interface CoffeeCardProps {
 }
 
 export function CoffeeCard(props: CoffeeCardProps) {
+  const { tags, name, description, image, price, id } = props
+
   const [amount, setAmount] = useState(1)
+
+  const { addItemToCart } = useContext(CartContext)
 
   function increaseAmount() {
     setAmount((state) => state + 1)
@@ -34,7 +41,15 @@ export function CoffeeCard(props: CoffeeCardProps) {
     }
   }
 
-  const { tags, name, description, image, price } = props
+  function handleAddToCart() {
+    addItemToCart({ id, image, name, price, quantity: amount })
+    toast.success(
+      `${amount} ${
+        amount > 1 ? 'itens adicionados' : 'item adicionado'
+      } ao carrinho`,
+    )
+    setAmount(1)
+  }
 
   return (
     <Card>
@@ -64,7 +79,7 @@ export function CoffeeCard(props: CoffeeCardProps) {
               <Plus size={14} weight="bold" />
             </button>
           </Counter>
-          <AddToCartButton type="button">
+          <AddToCartButton type="button" onClick={handleAddToCart}>
             <ShoppingCartSimple size={22} weight="fill" />
           </AddToCartButton>
         </div>

@@ -1,4 +1,5 @@
 import { ThemeProvider } from 'styled-components'
+import { Toaster } from 'react-hot-toast'
 
 import { defaultTheme } from './styles/themes/default'
 import { Home } from './pages/Home'
@@ -37,6 +38,7 @@ export function App() {
         <RouterProvider router={router} />
       </CartContextProvider>
 
+      <Toaster />
       <GlobalStyle />
     </ThemeProvider>
   )

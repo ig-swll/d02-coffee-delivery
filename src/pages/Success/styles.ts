@@ -1,15 +1,23 @@
 import styled, { keyframes } from 'styled-components'
 
-const bikeAnim = keyframes`
- from {
-  opacity: 0;
-  translate: -5rem;
- }
+const bikeStartAnim = keyframes`
+  from {
+    opacity: 0;
+    translate: -5rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0;
+  }
+`
 
- to {
-  opacity: 1;
-  translate: 0;
- }
+const bikeInfiniteAnim = keyframes`
+  from {
+    transform: translateY(-0.25rem);
+  }
+  to {
+    transform: translateY(0.25rem);
+  }
 `
 
 const orderInfoAnim = keyframes`
@@ -33,7 +41,8 @@ export const SuccessContainer = styled.main`
     gap: 4rem;
 
     img {
-      animation: ${bikeAnim} 0.4s ease-in;
+      animation: ${bikeStartAnim} 0.4s ease-in,
+        ${bikeInfiniteAnim} 1.6s ease-in-out infinite alternate;
       max-width: 100%;
 
       @media (prefers-reduced-motion) {
@@ -76,18 +85,14 @@ export const OrderInfo = styled.div`
   position: relative;
   width: 100%;
   animation: ${orderInfoAnim} 0.4s ease-out;
-
-  &::before {
-    pointer-events: none;
-    content: '';
-    padding: 1px;
-    position: absolute;
-    inset: 0;
-    border-radius: 6px 44px 6px 44px;
-    background: linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-  }
+  border: 1px solid #0000;
+  border-radius: 6px 44px 6px 44px;
+  background: linear-gradient(
+        ${({ theme }) => theme.background},
+        ${({ theme }) => theme.background}
+      )
+      padding-box,
+    linear-gradient(102.89deg, #dbac2c 2.61%, #8047f8 98.76%) border-box;
 
   @media (prefers-reduced-motion) {
     animation: none;

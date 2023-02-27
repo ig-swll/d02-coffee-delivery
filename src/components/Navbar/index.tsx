@@ -15,6 +15,8 @@ import {
 export function Navbar() {
   const { items } = useContext(CartContext)
 
+  const cartItemsAmount = items.reduce((acc, curr) => acc + curr.quantity, 0)
+
   return (
     <NavbarContainer>
       <Link to="/">
@@ -28,7 +30,7 @@ export function Navbar() {
         </Location>
         <CartButton to="/checkout">
           <ShoppingCartSimple size={22} weight="fill" />
-          {items.length > 0 && <CartBadge>{items.length}</CartBadge>}
+          {items.length > 0 && <CartBadge>{cartItemsAmount}</CartBadge>}
         </CartButton>
       </Actions>
     </NavbarContainer>

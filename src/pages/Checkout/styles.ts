@@ -68,7 +68,7 @@ export const PaymentHeader = styled(FormSectionHeader)`
 
 export const FormGroup = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr min-content;
   gap: 0.75rem;
 
   #cep {
@@ -99,41 +99,6 @@ export const FormGroup = styled.div`
     #complemento {
       grid-column: span 1;
     }
-  }
-`
-
-export const Input = styled.input`
-  display: flex;
-  position: relative;
-  background-color: ${({ theme }) => theme['base-input']};
-  border: 1px solid ${({ theme }) => theme['base-button']};
-  border-radius: 4px;
-  padding: 0.75rem;
-
-  color: ${({ theme }) => theme['base-text']};
-
-  &::placeholder {
-    color: ${({ theme }) => theme['base-label']};
-
-    &::before {
-      position: absolute;
-      content: 'teste';
-      top: 0;
-      right: 0;
-    }
-  }
-`
-
-export const Select = styled.select`
-  background-color: ${({ theme }) => theme['base-input']};
-  border: 1px solid ${({ theme }) => theme['base-button']};
-  border-radius: 4px;
-  padding: 0.75rem;
-  display: flex;
-  color: ${({ theme }) => theme['base-text']};
-
-  &:invalid {
-    color: ${({ theme }) => theme['base-label']};
   }
 `
 
@@ -193,13 +158,6 @@ export const SummaryContainer = styled(CheckoutSection)`
   border-bottom-left-radius: 44px;
 `
 
-export const Separator = styled.span`
-  width: 100%;
-  height: 1px;
-  background-color: ${({ theme }) => theme['base-button']};
-  margin: 1.5rem 0;
-`
-
 export const SummaryInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -230,6 +188,11 @@ export const SubmitOrderButton = styled.button`
   color: ${({ theme }) => theme.white};
   text-transform: uppercase;
   font-weight: 700;
+
+  outline-width: 1px;
+  &:focus {
+    outline-color: ${({ theme }) => theme['yellow-dark']};
+  }
 
   &:disabled {
     background-color: ${({ theme }) => theme['base-button']};

@@ -1,44 +1,59 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { Trash, Minus, Plus } from 'phosphor-react'
-import { Separator } from '../../styles'
-import { CoffeeItem, Counter, ButtonsContainer } from './styles'
 
-export function CartItem() {
-  const [amount, setAmount] = useState(1)
+import { formatCurrency } from '../../../../utils/formatCurrency'
+import { CartContext } from '../../../../contexts/CartContext'
 
-  function increaseAmount() {
-    setAmount((state) => state + 1)
+import { CoffeeItem, Counter, ButtonsContainer, Separator } from './styles'
+
+interface CartItemProps {
+  id: number
+  name: string
+  image: string
+  price: number
+  quantity: number
+}
+
+export function CartItem(props: CartItemProps) {
+  const { id, name, image, price, quantity } = props
+  const { increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } =
+    useContext(CartContext)
+
+  function handleIncreaseQuantity() {
+    increaseItemQuantity(id)
   }
 
-  function decreaseAmount() {
-    if (amount > 1) {
-      setAmount((state) => state - 1)
-    }
+  function handleDecreaseQuantity() {
+    decreaseItemQuantity(id)
+  }
+
+  function handleRemoveItem() {
+    removeItemFromCart(id)
   }
 
   return (
     <>
       <CoffeeItem>
-        <img src="/images/Americano.png" alt="Imagem do café Americano" />
+        <img src={image} alt={`Imagem do café ${name}`} />
         <div>
-          <p>Americano</p>
+          <p>{name}</p>
           <ButtonsContainer>
             <Counter>
-              <button onClick={decreaseAmount}>
+              <button onClick={handleDecreaseQuantity} type="button">
                 <Minus size={14} weight="bold" />
               </button>
-              <span>{amount}</span>
-              <button onClick={increaseAmount}>
+              <span>{quantity}</span>
+              <button onClick={handleIncreaseQuantity} type="button">
                 <Plus size={14} weight="bold" />
               </button>
             </Counter>
-            <button type="button">
+            <button type="button" onClick={handleRemoveItem}>
               <Trash size={16} />
               Remover
             </button>
           </ButtonsContainer>
         </div>
-        <span>R$ 9,90</span>
+        <span>{formatCurrency(price ?? 0)}</span>
       </CoffeeItem>
       <Separator />
     </>

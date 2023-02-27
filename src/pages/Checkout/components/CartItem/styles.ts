@@ -35,6 +35,7 @@ export const ButtonsContainer = styled.div`
   div + button {
     display: flex;
     place-content: center;
+    align-items: center;
     gap: 0.25rem;
     color: ${({ theme }) => theme['base-text']};
     text-transform: uppercase;

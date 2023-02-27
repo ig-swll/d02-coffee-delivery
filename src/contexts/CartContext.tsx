@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useReducer } from 'react'
 import {
   addItemAction,
+  decreaseItemQuantityAction,
   increaseItemQuantityAction,
   removeItemAction,
 } from '../reducers/cart/actions'
@@ -47,7 +48,7 @@ export function CartContextProvider({ children }: PropsWithChildren) {
     if (cartState.items[itemInCart].quantity === 1) {
       dispatch(removeItemAction(id))
     } else {
-      dispatch(increaseItemQuantityAction(id))
+      dispatch(decreaseItemQuantityAction(id))
     }
   }
 
