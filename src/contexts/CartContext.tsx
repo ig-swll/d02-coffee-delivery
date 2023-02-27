@@ -1,26 +1,49 @@
-import { createContext, PropsWithChildren, useReducer } from 'react'
+import { createContext, PropsWithChildren, useEffect, useReducer } from 'react'
+import { differenceInMinutes } from 'date-fns'
+
 import {
   addItemAction,
   decreaseItemQuantityAction,
   increaseItemQuantityAction,
   removeItemAction,
+  setActiveOrderAction,
+  unsetActiveOrderAction,
 } from '../reducers/cart/actions'
-import { CartItem, cartReducer } from '../reducers/cart/reducers'
+import { CartItem, cartReducer, OrderData } from '../reducers/cart/reducers'
 
 interface CartContextType {
   items: CartItem[]
+  activeOrder: OrderData | null
   addItemToCart: (newItem: CartItem) => void
   removeItemFromCart: (id: number) => void
   increaseItemQuantity: (id: number) => void
   decreaseItemQuantity: (id: number) => void
+  setActiveOrder: (orderData: Omit<OrderData, 'creation'>) => void
+  unsetActiveOrder: () => void
 }
 
 export const CartContext = createContext({} as CartContextType)
 
+const STORAGE_KEY = '@coffee-delivery:cartstate:1.0'
+
 export function CartContextProvider({ children }: PropsWithChildren) {
-  const [cartState, dispatch] = useReducer(cartReducer, {
-    items: [],
-  })
+  const [cartState, dispatch] = useReducer(
+    cartReducer,
+    {
+      items: [],
+      activeOrder: null,
+    },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(STORAGE_KEY)
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+      return {
+        items: [],
+        activeOrder: null,
+      }
+    },
+  )
 
   function addItemToCart(newItem: CartItem) {
     const itemInCart = cartState.items.findIndex(
@@ -52,14 +75,48 @@ export function CartContextProvider({ children }: PropsWithChildren) {
     }
   }
 
+  function setActiveOrder(orderData: Omit<OrderData, 'creation'>) {
+    dispatch(setActiveOrderAction({ ...orderData, creation: new Date() }))
+  }
+
+  function unsetActiveOrder() {
+    dispatch(unsetActiveOrderAction())
+  }
+
+  useEffect(() => {
+    const stateAsJSON = JSON.stringify(cartState)
+    localStorage.setItem(STORAGE_KEY, stateAsJSON)
+  }, [cartState])
+
+  useEffect(() => {
+    let interval: number
+    if (cartState.activeOrder) {
+      const { creation } = cartState.activeOrder
+      interval = setInterval(() => {
+        const minDiff = differenceInMinutes(new Date(), new Date(creation))
+
+        if (minDiff >= 2) {
+          unsetActiveOrder()
+        }
+      }, 1000)
+    }
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [cartState.activeOrder])
+
   return (
     <CartContext.Provider
       value={{
         items: cartState.items,
+        activeOrder: cartState.activeOrder,
         addItemToCart,
         removeItemFromCart,
         increaseItemQuantity,
         decreaseItemQuantity,
+        setActiveOrder,
+        unsetActiveOrder,
       }}
     >
       {children}

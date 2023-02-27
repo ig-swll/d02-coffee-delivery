@@ -10,8 +10,21 @@ export interface CartItem {
   quantity: number
 }
 
+export interface OrderData {
+  zipcode: string
+  street: string
+  number: number
+  complement?: string
+  neighborhood: string
+  city: string
+  state: string
+  paymentMethod: 'credit' | 'debit' | 'cash'
+  creation: Date
+}
+
 interface CartState {
   items: CartItem[]
+  activeOrder: OrderData | null
 }
 
 export function cartReducer(state: CartState, action: ActionTypesProps) {
@@ -42,6 +55,17 @@ export function cartReducer(state: CartState, action: ActionTypesProps) {
           (item) => item.id === action.payload.itemId,
         )
         draft.items[idx].quantity -= 1
+      })
+
+    case ActionTypes.SET_ACTIVE_ORDER:
+      return produce(state, (draft) => {
+        draft.items = []
+        draft.activeOrder = action.payload.orderData
+      })
+
+    case ActionTypes.UNSET_ACTIVE_ORDER:
+      return produce(state, (draft) => {
+        draft.activeOrder = null
       })
 
     default:

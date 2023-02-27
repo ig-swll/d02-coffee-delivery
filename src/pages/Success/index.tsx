@@ -1,9 +1,26 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import successIllustration from '../../assets/Illustration.svg'
 import { ItemWithIcon } from '../../components/ItemWithIcon'
+import { CartContext } from '../../contexts/CartContext'
 import { OrderInfo, SuccessContainer, Title } from './styles'
 
 export function Success() {
+  const navigate = useNavigate()
+  const { activeOrder } = useContext(CartContext)
+
+  useEffect(() => {
+    if (!activeOrder) {
+      navigate('/')
+    }
+  }, [activeOrder, navigate])
+
+  if (activeOrder === null) return <div>&nbsp;</div>
+
+  const { street, number, neighborhood, city, state, paymentMethod } =
+    activeOrder
+
   return (
     <SuccessContainer>
       <Title>
@@ -19,9 +36,14 @@ export function Success() {
           >
             <div>
               <p>
-                Entrega em <strong>Rua sei la das quantas, 102</strong>
+                Entrega em{' '}
+                <strong>
+                  {street}, {number}
+                </strong>
               </p>
-              <p>Águas Claras - Brasília, DF</p>
+              <p>
+                {neighborhood} - {city}, {state}
+              </p>
             </div>
           </ItemWithIcon>
 
@@ -41,7 +63,10 @@ export function Success() {
           >
             <div>
               <p>Pagamento na entrega</p>
-              <strong>Cartão de crédito</strong>
+
+              {paymentMethod === 'credit' && <strong>Cartão de crédito</strong>}
+              {paymentMethod === 'debit' && <strong>Cartão de débito</strong>}
+              {paymentMethod === 'cash' && <strong>Dinheiro</strong>}
             </div>
           </ItemWithIcon>
         </OrderInfo>

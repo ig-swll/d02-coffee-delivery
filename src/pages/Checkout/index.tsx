@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { useNavigate } from 'react-router-dom'
 import { FormProvider } from 'react-hook-form'
@@ -22,7 +22,7 @@ import {
 } from './styles'
 
 export function Checkout() {
-  const { items } = useContext(CartContext)
+  const { items, setActiveOrder, activeOrder } = useContext(CartContext)
 
   const navigate = useNavigate()
 
@@ -38,10 +38,14 @@ export function Checkout() {
   const finalPrice = itemsPrice + deliveryFee
 
   function handleCheckout(data: CheckoutFormData) {
-    console.log(data)
-    // navigate('/checkout/success')
+    setActiveOrder(data)
   }
-  console.log(items.length)
+
+  useEffect(() => {
+    if (activeOrder) {
+      navigate('/checkout/success')
+    }
+  }, [activeOrder, navigate])
 
   return (
     <form onSubmit={handleSubmit(handleCheckout)}>
@@ -106,7 +110,7 @@ export function Checkout() {
               </SummaryInfo>
               <SubmitOrderButton
                 type="submit"
-                disabled={!isValid || items.length === 0}
+                disabled={!isValid || items.length === 0 || !!activeOrder}
               >
                 Confirmar Pedido
               </SubmitOrderButton>
